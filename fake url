@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="url"] {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .safe {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .unsafe {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Detector</h1>
+        <p class="description">Enter a URL below to check if it's potentially fake or malicious.</p>
+        <form id="urlForm">
+            <input type="url" id="urlInput" placeholder="Enter URL here" required>
+            <button type="submit" id="submitButton">Check URL</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('urlForm');
+        const urlInput = document.getElementById('urlInput');
+        const submitButton = document.getElementById('submitButton');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = urlInput.value;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Checking...';
+            result.textContent = '';
+            result.className = '';
+
+            // Simulating API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Dummy logic for demonstration
+            const isFake = url.includes('.ru') || 
+                            url.includes('.tk') || 
+url.includes('.xyz') ||
+url.includes('-auth') || 
+!url.includes('https') ||
+url.includes('javascript:') ||
+url.includes('data:') || 
+url.includes('vbscript:') || 
+url.includes('<script>') || 
+url.includes('onerror=') || 
+url.includes('onload=') || 
+url.includes('document.cookie') || 
+url.includes('eval(') || 
+url.includes('base64,') || 
+ url.includes('iframe') ||
+ url.includes('alert(') ||  
+url.includes('prompt(') ||  
+url.includes('confirm(') ||  
+url.includes('setTimeout(') ||  
+url.includes('setInterval(') ||  
+url.includes('fetch(') ||  
+url.includes('XMLHttpRequest') ||  
+url.includes('fetch%28') ||
+url.includes('window.location') ||  
+url.includes('document.write') ||  
+url.includes('<iframe') ||  
+url.includes('src=') ||  
+url.includes('href=') ||  
+url.includes('onclick=') ||  
+url.includes('onmouseover=') ||  
+url.includes('onfocus=') ||  
+url.includes('onunload=') ||  
+url.includes('innerHTML') ||  
+url.includes('outerHTML') ||  
+url.includes('%3Cscript%3E') ||  
+url.includes('%3Ciframe%3E') ||  
+url.includes('&#x3C;script&#x3E;') ||  
+url.includes('base href=') ||  
+url.includes('meta http-equiv') ||  
+url.includes('@import') ||  
+url.includes('expression(') ||  
+url.includes('javascript&colon;') || 
+url.includes('data&colon;') || 
+url.includes('&#x3A;javascript') || 
+url.includes('document.domain') ||  
+url.includes('location.href') ||  
+url.includes('window.name') ||  
+url.includes('cookie=') ||
+(!url.includes('https://') &&  
+!url.includes('.com') &&  
+!url.includes('.org') &&  
+!url.includes('.net') &&  
+!url.includes('.gov') &&  
+!url.includes('.edu') &&  
+!url.includes('.mil') &&  
+!url.includes('.us') &&  
+!url.includes('.uk') &&  
+!url.includes('.de') &&  
+!url.includes('.ca') &&  
+!url.includes('www.') &&  
+!url.includes('login.') &&  
+!url.includes('secure.') &&  
+!url.includes('account.') &&  
+!url.includes('.official') &&  
+!url.includes('bank.') &&  
+!url.includes('store.') &&  
+!url.includes('.trusted') &&  
+!url.includes('customer.') &&  
+!url.includes('help.') &&  
+!url.includes('.support') &&  
+!url.includes('.govt') &&  
+!url.includes('.law') &&  
+!url.includes('.verified') &&  
+!url.includes('.news') &&  
+!url.includes('.legit') &&  
+!url.includes('.medical') &&  
+!url.includes('.financial') &&  
+!url.includes('.insurance') &&  
+!url.includes('.technology')
+);
+
+
+            if (isFake) {
+                result.textContent = 'This URL might be unsafe!';
+                result.className = 'unsafe';
+            } else {
+                result.textContent = 'This URL appears to be safe.';
+                result.className = 'safe';
+            }
+
+            submitButton.disabled = false;
+            submitButton.textContent = 'Check URL';
+        });
+    </script>
+</body>
+</html>
+
